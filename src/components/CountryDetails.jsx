@@ -2,12 +2,21 @@ import React from 'react'
 import { useEffect, useState } from 'react'
 import './CountryDetails.css'
 
-export const CountryDetails = ({countryData, setCountryData, country,setCountry,countryName }) => {
+export const CountryDetails = ({ country,setCountryData}) => {
 
   console.log(country)
   const flagSrc = country.flags.png;
 
- const nativeNames = country.name?. nativeName;
+  const population = country.population;
+  const formattedPop = population.toLocaleString();
+  const nativeNames = country.name?. nativeName;
+  const borders = country?.borders 
+  const commaBorders = borders.join(',')
+  
+
+  console.log(country.cca3)
+  
+
   return (
     
     <div className='top-lvl-container'>
@@ -20,6 +29,7 @@ export const CountryDetails = ({countryData, setCountryData, country,setCountry,
       <div className='detail-container'>
         <h1>{country.name?.common}</h1>
         <table>
+        <tbody>
           <tr>
             <td>Native Names: {nativeNames &&
           Object.entries(nativeNames).map(([langCode, names]) => (
@@ -30,8 +40,8 @@ export const CountryDetails = ({countryData, setCountryData, country,setCountry,
             <td>Top Level Domain: {country?.tld[0]}</td>
           </tr>
           <tr>
-            <td>Population: {country.population}</td>
-            <td>Currencies: {JSON.stringify(country.currencies)}</td>
+            <td>Population: {formattedPop}</td>
+            <td>Currencies: {JSON.stringify(Object.entries(country.currencies))}</td>
           </tr>
           <tr>
             <td>Region: {country?.region}</td>
@@ -43,12 +53,13 @@ export const CountryDetails = ({countryData, setCountryData, country,setCountry,
           <tr>
             <td>Capital: {country?.capital}</td>
           </tr>
+        </tbody>
         </table>
 
         <div className='border-countries-container'>
            
             <div className='border-countries-list'>
-            <p>Border Countries: {country?.borders}</p>
+            <p >Border Countries: {commaBorders}</p>
             </div>
         </div>
       </div>

@@ -3,20 +3,19 @@ import './App.css'
 import { CountryDetails } from './components/CountryDetails'
 
 function App() {
-  const [count, setCount] = useState(0)
   const [country, setCountry] = useState({});
   const [loading, setLoading] = useState(true);
 
 
  const [countryData, setCountryData] = useState({
-    name: 'Belgium'
+    cca3: "RUS"
   })
-  const  countryName = countryData.name
+  const  countryCode = countryData.cca3
   useEffect(() =>{
     const fetchCountry = async () =>{
       setLoading(true);
       try {
-        const response = await fetch(`https://restcountries.com/v3.1/name/${countryName}`);
+        const response = await fetch(`https://restcountries.com/v3.1/alpha?codes=${countryCode}`);
         const data = await response.json();
         console.log(data)
         setCountry(data[0])
@@ -30,8 +29,7 @@ function App() {
  
     };
    fetchCountry();
-  },
-   [] ); 
+  }, [] ); 
    if(loading){
     return( 
       <p>Loading...</p>
@@ -44,12 +42,9 @@ function App() {
       </div>
   
       <CountryDetails 
-      countryData={countryData} 
-      setCountryData={setCountryData}
       country={country}
       setCountry={setCountry}
-      loading={loading}
-      setLoading={setLoading}/>
+  />
    
     </>
   )
