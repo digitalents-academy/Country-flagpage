@@ -11,11 +11,22 @@ export const CountryDetails = ({ country,setCountryData}) => {
   const formattedPop = population.toLocaleString();
   const nativeNames = country.name?. nativeName;
   const borders = country?.borders 
-  const commaBorders = borders.join(',')
-  
+  const commaBorders = borders ? borders.join(', ') : 'none'
+  const languages = country.languages ? Object.values(country.languages).join(', ') : 'Penguin Speech'
 
   console.log(country.cca3)
-  
+  console.log(commaBorders)
+  const renderCurrencies = () => {
+    if(country.currencies)
+    return Object.entries(country.currencies).map(([code, { name, symbol }]) => (
+       
+        <span key={code}>{name}, {symbol}</span>
+       
+    ));}
+  const renderNativeNames = () =>{
+    if(nativeNames)
+    return Object.entries(nativeNames).map(([langCode, names]) => names.common).join(', ')}
+   
 
   return (
     
@@ -23,35 +34,33 @@ export const CountryDetails = ({ country,setCountryData}) => {
         <div className='back-btn-container'>
           <button>Back</button>
         </div>
-     <div className='flag-and-detail-container'>
-
-      <img src={country.flags.png} />
+     <div className='flag-and-detail-container'>  
+       <div className='flag-wrapper'>
+         <img id='flag' src={flagSrc} />
+       </div> 
       <div className='detail-container'>
         <h1>{country.name?.common}</h1>
         <table>
         <tbody>
           <tr>
-            <td>Native Names: {nativeNames &&
-          Object.entries(nativeNames).map(([langCode, names]) => (
-            <ul key={langCode}> 
-              {langCode.toUpperCase()} : {names.common}
-            </ul>))}
-      </td>
-            <td>Top Level Domain: {country?.tld[0]}</td>
+            <td><b>Native Names:</b> {renderNativeNames()}
+            </td>
+            <td><b>Top Level Domain:</b> {country?.tld[0]}</td>
           </tr>
           <tr>
-            <td>Population: {formattedPop}</td>
-            <td>Currencies: {JSON.stringify(Object.entries(country.currencies))}</td>
+            
+            <td><b>Population:</b> {formattedPop}</td>
+            <td><b>Currency & symbol:</b> {renderCurrencies()}</td>
           </tr>
           <tr>
-            <td>Region: {country?.region}</td>
-            <td>Languages:  {JSON.stringify(country.languages)}</td>
+            <td><b>Region: </b>{country?.region}</td>
+            <td><b>Languages:</b> {languages}</td>
           </tr>
           <tr>
-            <td>Sub Region: {country?.subregion}</td>
+            <td><b>Sub Region:</b> {country?.subregion}</td>
           </tr>
           <tr>
-            <td>Capital: {country?.capital}</td>
+            <td><b>Capital:</b> {country?.capital}</td>
           </tr>
         </tbody>
         </table>
@@ -59,7 +68,8 @@ export const CountryDetails = ({ country,setCountryData}) => {
         <div className='border-countries-container'>
            
             <div className='border-countries-list'>
-            <p >Border Countries: {commaBorders}</p>
+            <p><b>Border Countries: </b><span className='border-countries'>{commaBorders}</span></p>
+            <p>{country.borders ? country.borders : ''}</p>
             </div>
         </div>
       </div>

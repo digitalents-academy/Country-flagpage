@@ -2,13 +2,14 @@ import { useState, useEffect } from 'react'
 import './App.css'
 import { CountryDetails } from './components/CountryDetails'
 
+
 function App() {
   const [country, setCountry] = useState({});
   const [loading, setLoading] = useState(true);
 
 
  const [countryData, setCountryData] = useState({
-    cca3: "RUS"
+    cca3: "mon"
   })
   const  countryCode = countryData.cca3
   useEffect(() =>{
@@ -21,7 +22,6 @@ function App() {
         setCountry(data[0])
         setLoading(false);
         console.log(country.name.common)
-      
       } catch (error) {
         console.log('Error fetching data', error)
         setLoading(false);
@@ -35,6 +35,7 @@ function App() {
       <p>Loading...</p>
     )
    }
+ 
   return (
     <>
       <div>
