@@ -1,16 +1,34 @@
-import React from 'react'
 import "../catalogue.css"
 
 
-export default function Catalogue({ countriesData, setCountriesData }) {
+
+export default function Catalogue({ countriesData, setCountriesData, countryData, setCountryData, state, nextState }) {
   console.log(countriesData)
 
   const newMap = Object.entries(countriesData)
+  //switch to using useRef isntead of queryselector
+ 
+  // Function to set countryData and execute nextState
+function handleCountryClick(event) {
+  const clickedBox = event.currentTarget; // Get the clicked element
+  const countryValue = clickedBox.querySelector('p').innerText;
+  setCountryData(countryValue) // Update countryData object
+  console.log(countryData)
+  nextState(); // Call nextState function
+}
+
+// Get all elements with the "country-box" class
+const countryBoxes = document.querySelectorAll('.country-box');
+
+// Add event listeners to each country box
+countryBoxes.forEach(box => {
+  box.addEventListener('click', handleCountryClick);
+});
 
   const displayCountries = () => {
     if (countriesData)
       return newMap.map(([key, { name, population, region, capital, flags }]) => (
-        <div className="country-box">
+        <div className="country-box" >
           <img className="flag" src={flags.png} />
           <div className="country-info">
             <p className="country">{name.common}</p>

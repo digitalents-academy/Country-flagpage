@@ -14,8 +14,8 @@ export const CountryDetails = ({ country, countriesData}) => {
   //convert the countries data into key-value pairs, where each pair is an array
   const newMap = (Object.entries(countriesData));
 
-
-  const filterBorderCountries = newMap
+  
+  const filterBorderCountries = borders ? newMap
   //destructure each entry with the ([_,country]) where the _is used to ignore the key
   //while country holds the individual country object.
   //filter function checks if the cca3 code of the country is included in the borders 
@@ -23,9 +23,10 @@ export const CountryDetails = ({ country, countriesData}) => {
   // countries whose cca3 codes are included in the borders array
   //then I map the filtered array to return an array consisting of the countries common
   //names
+  
   .filter(([_, country]) => borders.includes(country.cca3)) 
-  .map(([_, country]) => country.name.common); 
-
+  .map(([_, country]) => country.name.common) : ''; 
+ 
     const renderCurrencies = () => {
     if(country.currencies)
     return Object.entries(country.currencies).map(([code, { name, symbol }]) => (
