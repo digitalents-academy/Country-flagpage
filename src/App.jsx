@@ -7,9 +7,9 @@ function App() {
   const [error, setError] = useState(null);    
   const [country, setCountry] = useState({});
   const [loading, setLoading] = useState(true);
-  const [countries, setCountries] = useState({})
+  const [countriesData, setCountriesData] = useState({})
    const [countryData, setCountryData] = useState({
-    cca3: "RUS"
+    cca3: "BEL"
   })
   const  countryCode = countryData.cca3
  useEffect(() =>{
@@ -30,19 +30,19 @@ function App() {
   }, [countryCode] ); 
 
 useEffect(() =>{
-   const fetchCountries = async () => {
+   const fetchCountriesData = async () => {
     setLoading(true);
     try {
       const response = await fetch(`https://restcountries.com/v3.1/all`);
       const data = await response.json();
-      setCountries(data);
+      setCountriesData(data);
     } catch (error) {
       setError('Failed to fetch country data. Please try again.');
     } finally {
       setLoading(false);
     }
   };
-  fetchCountries();
+  fetchCountriesData();
 }, [] );
 
 if(loading){
@@ -64,7 +64,7 @@ if(loading){
       countryCode={countryCode}
       loading={loading}
       setLoading={setLoading}
-      countries={countries}
+      countriesData={countriesData}
       
   />
    

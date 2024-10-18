@@ -2,7 +2,7 @@ import React from 'react'
 import { useEffect, useState } from 'react'
 import './CountryDetails.css'
 
-export const CountryDetails = ({ country,setCountryData, countries}) => {
+export const CountryDetails = ({ country, countriesData}) => {
   const flagSrc = country.flags.png;
   const population = country.population;
   const formattedPop = population.toLocaleString();
@@ -12,7 +12,7 @@ export const CountryDetails = ({ country,setCountryData, countries}) => {
 
 
   //convert the countries data into key-value pairs, where each pair is an array
-  const newMap = (Object.entries(countries));
+  const newMap = (Object.entries(countriesData));
 
 
   const filterBorderCountries = newMap
