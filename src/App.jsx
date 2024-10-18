@@ -1,6 +1,10 @@
 import './App.css'
 import { CountryDetails } from './components/CountryDetails'
 import { useState, useEffect } from 'react';
+import './catalogue.css'
+import Catalogue from './Components/Catalogue'
+import Header from './Components/Header'
+import SearchBar from './Components/SearchBar'
 
 function App() {
  
@@ -8,7 +12,8 @@ function App() {
   const [country, setCountry] = useState({});
   const [loading, setLoading] = useState(true);
   const [countriesData, setCountriesData] = useState({})
-   const [countryData, setCountryData] = useState({
+  const countriesName = countriesData.name
+  const [countryData, setCountryData] = useState({
     cca3: "BEL"
   })
   const  countryCode = countryData.cca3
@@ -28,22 +33,26 @@ function App() {
     };
    fetchCountry();
   }, [countryCode] ); 
+ 
+  useEffect(() => {
+    const fetchCountries = async () => {
+      setLoading(true);
+      try {
+        const response = await fetch(`https://restcountries.com/v3.1/all`);
+        const data = await response.json();
+        console.log(data)
+        setCountriesData(data)
+        setLoading(false);
 
-useEffect(() =>{
-   const fetchCountriesData = async () => {
-    setLoading(true);
-    try {
-      const response = await fetch(`https://restcountries.com/v3.1/all`);
-      const data = await response.json();
-      setCountriesData(data);
-    } catch (error) {
-      setError('Failed to fetch country data. Please try again.');
-    } finally {
-      setLoading(false);
-    }
-  };
-  fetchCountriesData();
-}, [] );
+      } catch (error) {
+        console.log('Error fetching data', error)
+        setLoading(false);
+      }
+
+    };
+    fetchCountries();
+  },
+    []);
 
 if(loading){
   return( 
@@ -54,9 +63,21 @@ if(loading){
 
   return (
     <>
-      <div>
-
+       <div>
+        <Header />
       </div>
+
+      <div>
+        <SearchBar />
+      </div>
+
+      <div>
+        <Catalogue countriesData={countriesData}
+          setCountriesData={setCountriesData} />
+      </div>
+
+    </>
+
   
       <CountryDetails 
       country={country}
