@@ -1,34 +1,59 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState, useEffect } from 'react'
+import './catalogue.css'
+import Catalogue from './Components/Catalogue'
+import Header from './Components/Header'
+import SearchBar from './Components/SearchBar'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [country, setCountry] = useState({});
+  const [loading, setLoading] = useState(true);
+
+
+  const [countriesData, setCountriesData] = useState({})
+  const countriesName = countriesData.name
+  useEffect(() => {
+    const fetchCountries = async () => {
+      setLoading(true);
+      try {
+        const response = await fetch(`https://restcountries.com/v3.1/all`);
+        const data = await response.json();
+        console.log(data)
+        setCountriesData(data)
+        setLoading(false);
+
+      } catch (error) {
+        console.log('Error fetching data', error)
+        setLoading(false);
+      }
+
+    };
+    fetchCountries();
+  },
+    []);
+  if (loading) {
+    return (
+      <p>Loading...</p>
+    )
+  }
 
   return (
     <>
+
       <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <Header />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+
+      <div>
+        <SearchBar />
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+
+      <div>
+        <Catalogue countriesData={countriesData}
+          setCountriesData={setCountriesData} />
+      </div>
+
     </>
+
   )
 }
 
