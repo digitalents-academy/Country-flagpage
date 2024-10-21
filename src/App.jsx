@@ -22,8 +22,12 @@ function App() {
         
         const response = await fetch(`https://restcountries.com/v3.1/name/${countryData}`);
         const data = await response.json();
+        if (!response.ok){
+          window.alert('Maantieto 0/5, koita etsiä oikeaa maata urpo')
+          setState(0)
+        }else{
         setCountry(data[0])
-        setLoading(false)
+        setLoading(false)}
       } catch (error) {
         console.log('Error fetching data', error)
         setLoading(false);
