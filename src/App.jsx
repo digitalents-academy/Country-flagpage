@@ -66,7 +66,7 @@ if(loading){
       </div>
 
       <div>
-        <SearchBar />
+      {state === 0 && <SearchBar setCountryData={setCountryData} nextState={nextState} />}
       </div>
 
       <div>
