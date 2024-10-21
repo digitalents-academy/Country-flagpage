@@ -23,8 +23,9 @@ function App() {
         const response = await fetch(`https://restcountries.com/v3.1/name/${countryData}`);
         const data = await response.json();
         if (!response.ok){
-          window.alert('Maantieto 0/5, koita etsiä oikeaa maata urpo')
+          window.alert('Country does not exist, check the spelling and try again')
           setState(0)
+          setCountryData('Belgium')
         }else{
         setCountry(data[0])
         setLoading(false)}
