@@ -19,6 +19,7 @@ function App() {
     const fetchCountry = async () =>{
       setLoading(true);
       try {
+        
         const response = await fetch(`https://restcountries.com/v3.1/name/${countryData}`);
         const data = await response.json();
         setCountry(data[0])
@@ -82,9 +83,12 @@ if(loading){
       country={country}
       setCountry={setCountry}
       countryData={countryData}
+      setCountryData={setCountryData}
       loading={loading}
       setLoading={setLoading}
-      countriesData={countriesData}/>}
+      countriesData={countriesData}
+      prevState={prevState}
+     />}
       
    
 

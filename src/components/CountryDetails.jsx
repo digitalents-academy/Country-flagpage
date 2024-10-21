@@ -2,14 +2,13 @@ import React from 'react'
 import { useEffect, useState } from 'react'
 import './CountryDetails.css'
 
-export const CountryDetails = ({ country, countriesData}) => {
-  const flagSrc = country.flags.png;
+export const CountryDetails = ({ country, countriesData, prevState, setCountryData}) => {
+  const flagSrc = country.flags?.png;
   const population = country.population;
   const formattedPop = population.toLocaleString();
-  const nativeNames = country.name?. nativeName;
+  const nativeNames = country.name?.nativeName;
   const borders = country?.borders 
   const languages = country.languages ? Object.values(country.languages).join(', ') : 'Penguin Speech'
-
 
   //convert the countries data into key-value pairs, where each pair is an array
   const newMap = (Object.entries(countriesData));
@@ -43,7 +42,7 @@ export const CountryDetails = ({ country, countriesData}) => {
     if(borders)
      return (filterBorderCountries).map(( borderCountry, index,) => (
            
-      <span key={index} className='border-countries' >{borderCountry} </span>
+      <span key={index} className='border-countries' onClick={() => setCountryData(borderCountry)} >{borderCountry} </span>
            
         ));} 
    
@@ -52,7 +51,7 @@ export const CountryDetails = ({ country, countriesData}) => {
     
     <div className='top-lvl-container'>
         <div className='back-btn-container'>
-          <button>Back</button>
+          <button className='back-button' onClick={prevState}>Back</button>
         </div>
      <div className='flag-and-detail-container'>  
        <div className='flag-wrapper'>
@@ -80,7 +79,7 @@ export const CountryDetails = ({ country, countriesData}) => {
             <td><b>Sub Region:</b> {country?.subregion}</td>
           </tr>
           <tr>
-            <td><b>Capital:</b> {country?.capital}</td>
+            <td><b>Capital:</b> {country?.capital.length >1 ? country?.capital.join(', ') : country?.capital}</td>
           </tr>
         </tbody>
         </table>

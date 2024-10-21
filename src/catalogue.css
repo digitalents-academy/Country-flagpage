@@ -124,6 +124,9 @@ body {
   background-color: white;
   box-shadow: 0px 0px 15px 5px rgba(200, 200, 200, 0.1);
 }
+.country-box :hover{
+  cursor: pointer;
+}
 
 .flag {
   width: 250px;

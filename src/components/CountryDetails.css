@@ -8,6 +8,10 @@ body{
     background-color: white;
     display: inline-flex;
     box-shadow: 2px 2px 2px 2px lightgray /* adds a small shadow */
+    
+}
+.border-countries:hover{
+    cursor: pointer;
 }
 .flag-and-detail-container{
     display: grid;
@@ -55,4 +59,10 @@ td{
 table{
     max-width: 600px;
     max-height: 300px;
+}
+.search-bar{
+    display: none !important;
+}
+.filter{
+    display: none !important;
 }
