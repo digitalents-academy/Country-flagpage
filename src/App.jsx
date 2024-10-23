@@ -5,6 +5,7 @@ import './catalogue.css'
 import Catalogue from './Components/Catalogue'
 import Header from './Components/Header'
 import SearchBar from './Components/SearchBar'
+import { CustomDropdown } from './Components/CustomDropdown';
 
 function App() {
   const [state, setState] = useState(0)   
@@ -14,6 +15,7 @@ function App() {
   const [countryData, setCountryData] = useState('Belgium');
   const nextState = () => {state < 2 ? setState(state + 1) : null};
   const prevState = () => {state > 0 ? setState(state - 1) : null};
+  const options = ['Option 1', 'Option 2', 'Option 3', 'Option 4'];
  useEffect(() =>{
     const fetchCountry = async () =>{
       setLoading(true);
@@ -70,6 +72,7 @@ if(loading){
       </div>
 
       <div>
+      <CustomDropdown options={options} placeholder="Please select an option" />
       {state === 0 && <SearchBar setCountryData={setCountryData} nextState={nextState} />}
       </div>
 
