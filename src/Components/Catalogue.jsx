@@ -7,13 +7,6 @@ export default function Catalogue({ countriesData, setCountriesData, countryData
 
   const newMap = Object.entries(countriesData)
  
-  // Function to set countryData and execute nextState
-/* function handleCountryClick(event) {
-  const clickedBox = event.currentTarget; // Get the clicked element
-  const countryValue = clickedBox.querySelector('p').innerText;
-  setCountryData(countryValue) // Update countryData object
-  nextState(); // Call nextState function
-} */
 function handleCountryClick(countryName){
   if(!countryName){
     console.error('country name is undefined')
@@ -21,7 +14,7 @@ function handleCountryClick(countryName){
   }
   setCountryData(countryName)
   nextState();
-}
+ } 
   const displayCountries = () => {
     if (countriesData){
     const sortedCountries = [...newMap].sort((a, b) => {
@@ -47,16 +40,7 @@ function handleCountryClick(countryName){
   }
 
   return (
-    /*     <div className="country-box">
-          <img className="flag" src="https://flagcdn.com/w320/af.png" />
-          <div className="country-info">
-            <p className="country">Afghanistan</p>
-            <p className="population"><b>Population:</b> 27,657,145</p>
-            <p className="region"><b>Region:</b> Asia</p>
-            <p className="capital"><b>Capital:</b> Kabul</p>
-            <p>{countriesData.name.common}</p>
-          </div>
-        </div> */
+ 
     <div>
       <div className="flag-grid">
         {displayCountries()}
