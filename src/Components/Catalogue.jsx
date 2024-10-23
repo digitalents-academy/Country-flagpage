@@ -6,7 +6,6 @@ export default function Catalogue({ countriesData, setCountriesData, countryData
 
 
   const newMap = Object.entries(countriesData)
-  //switch to using useRef isntead of queryselector
  
   // Function to set countryData and execute nextState
 /* function handleCountryClick(event) {
@@ -23,18 +22,16 @@ function handleCountryClick(countryName){
   setCountryData(countryName)
   nextState();
 }
-/* // Get all elements with the "country-box" class
-const countryBoxes = document.querySelectorAll('.country-box');
-
-// Add event listeners to each country box
-//breaks after re-rendering the component
-/* countryBoxes.forEach(box => {
-  box.addEventListener('click', handleCountryClick);
-});
- */ 
   const displayCountries = () => {
-    if (countriesData)
-      return newMap.map(([key, { name, population, region, capital, flags }]) => (
+    if (countriesData){
+    const sortedCountries = [...newMap].sort((a, b) => {
+  const nameA = a[1].name.common;
+  const nameB = b[1].name.common;
+  if (nameA < nameB) return -1;
+  if( nameA > nameB) return 1 ;
+  return 0;
+    });
+      return sortedCountries.map(([key, { name, population, region, capital, flags }]) => (
         <div key={key}  className="country-box" onClick={() => handleCountryClick(name.common)} >
           <img className="flag" src={flags.png} />
           <div className="country-info">
@@ -47,7 +44,7 @@ const countryBoxes = document.querySelectorAll('.country-box');
       ))
 
   }
-
+  }
 
   return (
     /*     <div className="country-box">

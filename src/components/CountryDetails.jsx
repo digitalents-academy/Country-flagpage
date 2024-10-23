@@ -30,7 +30,7 @@ export const CountryDetails = ({ country, countriesData, prevState, setCountryDa
     if(country.currencies)
     return Object.entries(country.currencies).map(([code, { name, symbol }]) => (
        
-        <span key={code}>{name}, {symbol}</span>
+        <span key={code} className='currency-item'>{name}, {symbol}</span>
        
     ));}
   const renderNativeNames = () =>{
@@ -46,7 +46,7 @@ export const CountryDetails = ({ country, countriesData, prevState, setCountryDa
            
         ));} 
    
-        
+    
   return (
     
     <div className='top-lvl-container'>
@@ -55,31 +55,44 @@ export const CountryDetails = ({ country, countriesData, prevState, setCountryDa
         </div>
      <div className='flag-and-detail-container'>  
        <div className='flag-wrapper'>
-         <img id='flag' src={flagSrc} />
+         <img className='country-flag' id='flag' src={flagSrc} />
        </div> 
       <div className='detail-container'>
-        <h1>{country.name?.common}</h1>
-        <table>
+        <h1 className='country-name'>{country.name?.common}</h1>
+        <table className='details-table'>
         <tbody>
           <tr>
-            <td><b>Native Names:</b> {renderNativeNames()}
+            <td className='native-names'><b>Native Names:</b> {renderNativeNames() }
             </td>
-            <td><b>Top Level Domain:</b> {country?.tld[0]}</td>
+            <td className='top-level-domain'><b>Top Level Domain:</b> {country.tld ? country.tld[0] : 'this country connects to the internet by sticking a fork in a toaster'}</td>
           </tr>
           <tr>
             
-            <td><b>Population:</b> {formattedPop}</td>
+            <td className='population'><b>Population:</b> {formattedPop}</td>
             <td><b>Currency & symbol:</b> {renderCurrencies()}</td>
           </tr>
           <tr>
-            <td><b>Region: </b>{country?.region}</td>
-            <td><b>Languages:</b> {languages}</td>
+            <td className='region'><b>Region: </b>{country?.region}</td>
+            <td className='languages'><b>Languages:</b> {languages}</td>
           </tr>
           <tr>
-            <td><b>Sub Region:</b> {country?.subregion}</td>
+            <td className='sub-region'><b>Sub Region:</b> {country.subregion}</td>
           </tr>
           <tr>
-            <td><b>Capital:</b> {country?.capital.length >1 ? country?.capital.join(', ') : country?.capital}</td>
+          <td className='capital'>
+  <b>Capital:</b> {
+    (() => {
+      switch (true) {
+        case !country?.capital || country.capital.length === 0:
+          return "No capital";
+        case country.capital.length > 1:
+          return country.capital.join(', ');
+        default:
+          return country.capital[0];
+      }
+    })()
+  }
+</td>
           </tr>
         </tbody>
         </table>

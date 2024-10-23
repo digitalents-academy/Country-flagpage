@@ -7,8 +7,7 @@ import Header from './Components/Header'
 import SearchBar from './Components/SearchBar'
 
 function App() {
-  const [state, setState] = useState(0)
-  const [error, setError] = useState(null);    
+  const [state, setState] = useState(0)   
   const [country, setCountry] = useState({});
   const [loading, setLoading] = useState(true);
   const [countriesData, setCountriesData] = useState({});
