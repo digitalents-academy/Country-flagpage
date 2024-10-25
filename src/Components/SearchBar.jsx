@@ -29,14 +29,6 @@ export default function SearchBar({ setCountryData, nextState }) {
         <img className="search-icon" src="src/search-outline.svg" />
         <input ref={inputRef} onKeyDown={handleKeyDown} className="search-bar-text" type="text" placeholder="Search for a country..."></input>
       </div>
-
-      <select className="dropdown" value={selectedValue} onChange={handleChange}>
-        <option value="Filter by Region">Filter by Region</option>
-        <option value="Option 1">Africa</option>
-        <option value="Option 2">America</option>
-        <option value="Option 3">Europe</option>
-        <option value="Option 4">Oceania</option>
-      </select>
     </div>
 
 

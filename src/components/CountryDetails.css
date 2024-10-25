@@ -3,7 +3,7 @@ body{
 }
 .top-lvl-container{
     display: grid;
-    grid-template-rows: 0.5fr 1fr 1fr;
+    grid-template-rows: 0.7fr 1fr 1fr;
 }
 .back-btn-container{
     display: flex;
