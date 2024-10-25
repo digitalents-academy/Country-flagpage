@@ -6,7 +6,10 @@ export default function SearchBar({ setCountryData, nextState }) {
   
   function searchCountry(){
     if(inputRef.current && inputRef.current.value !== ''){
-      setCountryData(inputRef.current.value)
+      setCountryData( inputRef.current.value === 'china' || inputRef.current.value === 'China'
+      ? 'cn'
+      : inputRef.current.value
+  );
       nextState()
     }
    }

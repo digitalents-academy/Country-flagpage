@@ -42,7 +42,7 @@ export const CountryDetails = ({ country, countriesData, prevState, setCountryDa
     if(borders)
      return (filterBorderCountries).map(( borderCountry, index,) => (
            
-      <span key={index} className='border-countries' onClick={() => setCountryData(borderCountry)} >{borderCountry} </span>
+      <span key={index} className='border-countries' onClick={() => setCountryData(borderCountry === 'China' ? 'cn' : borderCountry)} >{borderCountry} </span>
            
         ));} 
    
