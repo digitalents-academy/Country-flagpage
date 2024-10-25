@@ -1,7 +1,8 @@
-import { useRef } from "react"
+import { useRef, useState } from "react"
 import "../catalogue.css"
 
 export default function SearchBar({ setCountryData, nextState }) {
+  const [selectedValue, setSelectedValue] = useState('Option 1');
   const inputRef = useRef(null);
   
   function searchCountry(){
@@ -12,33 +13,27 @@ export default function SearchBar({ setCountryData, nextState }) {
   );
       nextState()
     }
-   }
+  }
 
-   function handleKeyDown(event){
-    if(event.key === 'Enter' ) 
-    searchCountry();
-   }
+  function handleKeyDown(event) {
+    if (event.key === 'Enter')
+      searchCountry();
+  }
+
+  const handleChange = (event) => {
+    setSelectedValue(event.target.value);
+    console.log(event.target.value)
+  };
+
+
   return (
     <div className="search-bars">
       <div className="search-bar">
         <img className="search-icon" src="src/search-outline.svg" />
         <input ref={inputRef} onKeyDown={handleKeyDown} className="search-bar-text" type="text" placeholder="Search for a country..."></input>
       </div>
-
-      <form action="/action_page.php">
-        <select className="filter" defaultValue="filter" name="region" id="regions">
-          <option value="filter" disabled="true">Filter by Region</option>
-          <option value="africa">Africa</option>
-          <option value="america">America</option>
-          <option value="asia">Asia</option>
-          <option value="europe">Europe</option>
-          <option value="oceania">Oceania</option>
-        </select>
-      </form>
     </div>
 
 
   )
-
-
 }

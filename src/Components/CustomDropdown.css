@@ -1,49 +1,67 @@
 /* Container for the entire dropdown */
-.dropdown-container {
-    position: relative;
-    width: 200px;
-    font-family: Arial, sans-serif;
-  }
-  
-  /* Header for the dropdown to show selected value */
-  .dropdown-header {
-    padding: 10px;
-    border: 2px solid #007bff;
-    border-radius: 5px;
-    background-color: #f8f9fa;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  /* Arrow icon for dropdown */
-  .dropdown-arrow {
-    margin-left: 10px;
-  }
-  
-  /* Container for dropdown options */
-  .dropdown-options {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background-color: #fff;
-    border: 1px solid #007bff;
-    z-index: 1000;
-    border-radius: 5px;
-    margin-top: 5px;
-  }
-  
-  /* Styling for individual options */
-  .dropdown-option {
-    padding: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  /* Hover effect for dropdown options */
-  .dropdown-option:hover {
-    background-color: white; /* Custom hover background */
-    color: black;               /* Custom hover text color */
-  }
+.dropdown {
+  display: flex;
+  flex-direction: row;
+  position: fixed;
+  align-items: center;
+  text-wrap: nowrap;
+  right: 60px;
+  width: 180px;
+  height: 60px;
+  background-color: white;
+  box-shadow: 0px 0px 15px 5px rgba(200, 200, 200, 0.1);
+  border-radius: 4px;
+  padding-left: 20px;
+  cursor: pointer;
+  border: none;
+  font-family: nunito sans;
+  color: black;
+  font-size: 16px;
+  z-index: 1;
+}
+
+/* Header for the dropdown to show selected value */
+.dropdown-header {
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Arrow icon for dropdown */
+.dropdown-arrow {
+  width: 15px;
+  height: 15px;
+  padding-left: 140px;
+  position: absolute;
+  margin-top: 4px;
+}
+
+/* Container for dropdown options */
+.dropdown-options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  z-index: 1000;
+  border-radius: 5px;
+  margin-top: 5px;
+  padding-left: 5px;
+  box-shadow: 0px 0px 15px 5px rgba(200, 200, 200, 0.1);
+}
+
+/* Styling for individual options */
+.dropdown-option {
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Hover effect for dropdown options */
+.dropdown-option:hover {
+  background-color: lightgrey;
+  /* Custom hover background */
+  color: black;
+  /* Custom hover text color */
+}

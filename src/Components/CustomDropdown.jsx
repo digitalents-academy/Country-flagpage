@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './CustomDropdown.css';
 
-export const CustomDropdown = ({ options, placeholder }) => {
+export const CustomDropdown = ({ options, placeholder, newMap }) => {
   const [isOpen, setIsOpen] = useState(false); //starts not open
   const [selectedValue, setSelectedValue] = useState(null);
 
@@ -15,12 +15,14 @@ export const CustomDropdown = ({ options, placeholder }) => {
     setSelectedValue(option);
     setIsOpen(false);
   };
-
+  const region = 'Europe'
+  const filterByRegion = newMap.filter(([_, country]) => { return country.region === region });
+  console.log(filterByRegion)
   return (
-    <div className="dropdown-container">
+    <div className="dropdown">
       <div className="dropdown-header" onClick={toggleDropdown}>
-        {selectedValue ? selectedValue : placeholder || 'Select an option'}
-        <span className="dropdown-arrow">{isOpen ? '▲' : '▼'}</span>
+        {selectedValue ? selectedValue : placeholder || 'Filter by Region'}
+        <img className="dropdown-arrow" src="./src/down-arrow.png"></img>
       </div>
       {isOpen && (
         <div className="dropdown-options">

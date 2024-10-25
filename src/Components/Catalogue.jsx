@@ -2,30 +2,30 @@ import "../catalogue.css"
 
 
 
-export default function Catalogue({ countriesData, setCountriesData, countryData, setCountryData, state, nextState }) {
+export default function Catalogue({ countriesData, setCountriesData, countryData, setCountryData, state, nextState, newMap }) {
 
 
-  const newMap = Object.entries(countriesData)
- 
-function handleCountryClick(countryName){
-  if(!countryName){
-    console.error('country name is undefined')
-    return;
+
+
+  function handleCountryClick(countryName) {
+    if (!countryName) {
+      console.error('country name is undefined')
+      return;
+    }
+    setCountryData(countryName)
+    nextState();
   }
-  setCountryData(countryName)
-  nextState();
- } 
   const displayCountries = () => {
-    if (countriesData){
-    const sortedCountries = [...newMap].sort((a, b) => {
-  const nameA = a[1].name.common;
-  const nameB = b[1].name.common;
-  if (nameA < nameB) return -1;
-  if( nameA > nameB) return 1 ;
-  return 0;
-    });
+    if (countriesData) {
+      const sortedCountries = [...newMap].sort((a, b) => {
+        const nameA = a[1].name.common;
+        const nameB = b[1].name.common;
+        if (nameA < nameB) return -1;
+        if (nameA > nameB) return 1;
+        return 0;
+      });
       return sortedCountries.map(([key, { name, population, region, capital, flags }]) => (
-        <div key={key}  className="country-box" onClick={() => handleCountryClick(name.common)} >
+        <div key={key} className="country-box" onClick={() => handleCountryClick(name.common)} >
           <img className="flag" src={flags.png} />
           <div className="country-info">
             <p className="country">{name.common}</p>
@@ -36,11 +36,12 @@ function handleCountryClick(countryName){
         </div>
       ))
 
-  }
+    }
   }
 
+
   return (
- 
+
     <div>
       <div className="flag-grid">
         {displayCountries()}
