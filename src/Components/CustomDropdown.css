@@ -47,7 +47,7 @@
   z-index: 1000;
   border-radius: 5px;
   margin-top: 5px;
-  padding-left: 5px;
+
   box-shadow: 0px 0px 15px 5px rgba(200, 200, 200, 0.1);
 }
 
@@ -56,12 +56,11 @@
   padding: 10px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  padding-left: 17px;
 }
 
 /* Hover effect for dropdown options */
 .dropdown-option:hover {
-  background-color: lightgrey;
-  /* Custom hover background */
+  background-color: rgb(241, 241, 241);
   color: black;
-  /* Custom hover text color */
 }

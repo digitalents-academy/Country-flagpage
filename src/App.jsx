@@ -6,6 +6,7 @@ import Catalogue from './Components/Catalogue'
 import Header from './Components/Header'
 import SearchBar from './Components/SearchBar'
 import { CustomDropdown } from './Components/CustomDropdown';
+import FilteredCountries from './Components/FilteredCountries';
 
 function App() {
   const [state, setState] = useState(0)
@@ -73,8 +74,9 @@ function App() {
       </div>
 
       <div>
-        <CustomDropdown options={options} placeholder="Filter by Region" newMap={newMap} />
+        <CustomDropdown options={options} placeholder="Filter by Region" newMap={newMap} setState={setState} />
         {state === 0 && <SearchBar setCountryData={setCountryData} nextState={nextState} />}
+        {state === 2 && <FilteredCountries />}
       </div>
 
       <div>
@@ -98,6 +100,8 @@ function App() {
         countriesData={countriesData}
         prevState={prevState}
       />}
+
+
 
 
 
