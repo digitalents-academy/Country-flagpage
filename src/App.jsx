@@ -6,6 +6,7 @@ import Catalogue from './Components/Catalogue'
 import Header from './Components/Header'
 import SearchBar from './Components/SearchBar'
 import { CustomDropdown } from './Components/CustomDropdown';
+import ScrollUpButton from './Components/ScrollUpButton';
 
 function App() {
   const [state, setState] = useState(0)
@@ -98,7 +99,7 @@ function App() {
         countriesData={countriesData}
         prevState={prevState}
       />}
-
+      <ScrollUpButton/>
 
 
 
