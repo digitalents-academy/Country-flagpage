@@ -1,8 +1,9 @@
-import "../catalogue.css"
-
+import "./catalogue.css"
+import React, { useState, useEffect } from 'react';
 
 
 export default function Catalogue({ countriesData, setCountriesData, countryData, setCountryData, state, nextState, newMap }) {
+
 
 
 
@@ -49,6 +50,9 @@ export default function Catalogue({ countriesData, setCountriesData, countryData
       </div>
     </div>
   )
+
+
+
 
 }
 

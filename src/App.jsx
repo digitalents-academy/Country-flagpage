@@ -1,12 +1,13 @@
 import './App.css'
 import { CountryDetails } from './components/CountryDetails'
 import { useState, useEffect } from 'react';
-import './catalogue.css'
+import './Components/catalogue.css';
 import Catalogue from './Components/Catalogue'
 import Header from './Components/Header'
 import SearchBar from './Components/SearchBar'
 import { CustomDropdown } from './Components/CustomDropdown';
 import FilteredCountries from './Components/FilteredCountries';
+import ScrollUpButton from './Components/ScrollUpButton';
 
 function App() {
   const [state, setState] = useState(0)
@@ -16,7 +17,8 @@ function App() {
   const [countryData, setCountryData] = useState('Belgium');
   const nextState = () => { state < 2 ? setState(state + 1) : null };
   const prevState = () => { state > 0 ? setState(state - 1) : null };
-  const options = ['Africa', 'America', 'Antarctic', 'Europe', 'Oceania'];
+  const options = ['Africa', 'Americas', 'Antarctic', 'Europe', 'Oceania'];
+  const [region, setRegion] = useState(null);
   useEffect(() => {
     const fetchCountry = async () => {
       setLoading(true);
@@ -67,6 +69,38 @@ function App() {
   }
   const newMap = Object.entries(countriesData)
 
+  //Country filter function 
+
+  const filterByRegion = newMap.filter(([_, country]) => { return country.region === region });
+  console.log(filterByRegion)
+
+  const filteredCountries = () => {
+    if (filterByRegion) {
+      const sortedCountries = [...filterByRegion].sort((a, b) => {
+        const nameA = a[1].name.common;
+        const nameB = b[1].name.common;
+        if (nameA < nameB) return -1;
+        if (nameA > nameB) return 1;
+        return 0;
+      });
+      return sortedCountries.map(([key, { name, population, region, capital, flags }]) => (
+        <div key={key} className="country-box" onClick={() => handleCountryClick(name.common)} >
+          <img className="flag" src={flags.png} />
+          <div className="country-info">
+            <p className="country">{name.common}</p>
+            <p className="population"><b>Population:</b> {population.toLocaleString()}</p>
+            <p className="region"><b>Region:</b> {region}</p>
+            <p className="capital"><b>Capital:</b> {capital}</p>
+          </div>
+        </div>
+      ))
+
+    }
+  }
+
+
+
+
   return (
     <>
       <div>
@@ -74,9 +108,9 @@ function App() {
       </div>
 
       <div>
-        <CustomDropdown options={options} placeholder="Filter by Region" newMap={newMap} setState={setState} />
+        <CustomDropdown options={options} placeholder="Filter by Region" newMap={newMap} setState={setState} region={region} setRegion={setRegion} />
         {state === 0 && <SearchBar setCountryData={setCountryData} nextState={nextState} />}
-        {state === 2 && <FilteredCountries />}
+        {state === 2 && <FilteredCountries filteredCountries={filteredCountries} region={region} setRegion={setRegion} />}
       </div>
 
       <div>
@@ -100,9 +134,7 @@ function App() {
         countriesData={countriesData}
         prevState={prevState}
       />}
-
-
-
+      <ScrollUpButton />
 
 
 

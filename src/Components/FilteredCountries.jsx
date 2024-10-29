@@ -1,11 +1,15 @@
-import React from 'react'
+import React from 'react';
+import './CustomDropdown.css';
+import './catalogue.css';
 
-const FilteredCountries = ({ filteredCountries }) => {
+const FilteredCountries = ({ filteredCountries, region, setRegion }) => {
 
 
 
   return (
-    <div>  </div>
+    <div className="flag-grid">
+      {filteredCountries()}
+    </div>
   )
 }
 
