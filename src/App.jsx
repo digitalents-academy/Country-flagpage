@@ -74,6 +74,15 @@ function App() {
   const filterByRegion = newMap.filter(([_, country]) => { return country.region === region });
   console.log(filterByRegion)
 
+  
+  function handleCountryClick(countryName) {
+    if (!countryName) {
+      console.error('country name is undefined')
+      return;
+    }
+    setCountryData(countryName)
+    setState(1);
+  }
   const filteredCountries = () => {
     if (filterByRegion) {
       const sortedCountries = [...filterByRegion].sort((a, b) => {
