@@ -19,6 +19,12 @@ function App() {
   const prevState = () => { state > 0 ? setState(state - 1) : null };
   const options = ['Africa', 'Americas', 'Antarctic', 'Europe', 'Oceania'];
   const [region, setRegion] = useState(null);
+
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    const savedMode = localStorage.getItem('darkmode');
+    return savedMode === 'true';
+  });
+
   useEffect(() => {
     const fetchCountry = async () => {
       setLoading(true);
@@ -112,6 +118,9 @@ function App() {
 
   return (
     <>
+      <div>
+        <Header isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
+      </div>
 
       <div className="box">
         <div>
