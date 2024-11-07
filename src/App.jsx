@@ -117,7 +117,7 @@ function App() {
       </div>
 
       <div>
-        <CustomDropdown options={options} placeholder="Filter by Region" newMap={newMap} setState={setState} region={region} setRegion={setRegion} />
+      {(state === 2 || state === 0) && <CustomDropdown options={options} placeholder="Filter by Region" newMap={newMap} setState={setState} region={region} setRegion={setRegion} />}
         {(state === 2 || state === 0)  && <SearchBar setCountryData={setCountryData} nextState={nextState} />}
         {state === 2 && <FilteredCountries filteredCountries={filteredCountries} region={region} setRegion={setRegion} />}
       </div>
