@@ -74,7 +74,7 @@ function App() {
   const filterByRegion = newMap.filter(([_, country]) => { return country.region === region });
   console.log(filterByRegion)
 
-  
+
   function handleCountryClick(countryName) {
     if (!countryName) {
       console.error('country name is undefined')
@@ -112,41 +112,43 @@ function App() {
 
   return (
     <>
-      <div>
-        <Header />
-      </div>
 
-      <div>
-      {(state === 2 || state === 0) && <CustomDropdown options={options} placeholder="Filter by Region" newMap={newMap} setState={setState} region={region} setRegion={setRegion} />}
-        {(state === 2 || state === 0)  && <SearchBar setCountryData={setCountryData} nextState={nextState} />}
-        {state === 2 && <FilteredCountries filteredCountries={filteredCountries} region={region} setRegion={setRegion} />}
-      </div>
+      <div className="box">
+        <div>
+          <Header />
+        </div>
 
-      <div>
-        {state === 0 && <Catalogue
-          countriesData={countriesData}
-          setCountriesData={setCountriesData}
+        <div>
+          {(state === 2 || state === 0) && <CustomDropdown options={options} placeholder="Filter by Region" newMap={newMap} setState={setState} region={region} setRegion={setRegion} />}
+          {(state === 2 || state === 0) && <SearchBar setCountryData={setCountryData} nextState={nextState} />}
+          {state === 2 && <FilteredCountries filteredCountries={filteredCountries} region={region} setRegion={setRegion} />}
+        </div>
+
+        <div>
+          {state === 0 && <Catalogue
+            countriesData={countriesData}
+            setCountriesData={setCountriesData}
+            countryData={countryData}
+            setCountryData={setCountryData}
+            state={state}
+            nextState={nextState}
+            newMap={newMap} />}
+        </div>
+
+        {state === 1 && <CountryDetails
+          country={country}
+          setCountry={setCountry}
           countryData={countryData}
           setCountryData={setCountryData}
-          state={state}
-          nextState={nextState}
-          newMap={newMap} />}
+          loading={loading}
+          setLoading={setLoading}
+          countriesData={countriesData}
+          prevState={prevState}
+        />}
+        <ScrollUpButton />
+
+
       </div>
-
-      {state === 1 && <CountryDetails
-        country={country}
-        setCountry={setCountry}
-        countryData={countryData}
-        setCountryData={setCountryData}
-        loading={loading}
-        setLoading={setLoading}
-        countriesData={countriesData}
-        prevState={prevState}
-      />}
-      <ScrollUpButton />
-
-
-
     </>
 
 
