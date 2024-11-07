@@ -10,7 +10,6 @@ const Header = ({ isDarkMode, setIsDarkMode }) => {
     document.body.className = isDarkMode ? 'dark-mode' : 'light-mode';
   }, [isDarkMode]);
 
-
   const toggleDarkMode = () => {
     setIsDarkMode((prevMode) => !prevMode);
   };

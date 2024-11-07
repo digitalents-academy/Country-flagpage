@@ -51,8 +51,14 @@ body {
   grid-template-columns: 250px 250px 250px 250px;
   gap: px;
 }
+@media (min-width: 1600px) {
+  .flag-grid {
+    grid-template-columns: repeat(3, 1fr);
+    /* 4 columns on large screens */
+  }
+}
 
-@media (min-width: 1200px) {
+@media (min-width: 1800px) {
   .flag-grid {
     grid-template-columns: repeat(4, 1fr);
     /* 4 columns on large screens */

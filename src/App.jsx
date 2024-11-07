@@ -21,8 +21,8 @@ function App() {
   const [region, setRegion] = useState(null);
 
   const [isDarkMode, setIsDarkMode] = useState(() => {
-    const savedMode = localStorage.getItem('darkmode');
-    return savedMode === 'true';
+    const savedMode = localStorage.getItem('darkMode');
+    return savedMode === 'true'; 
   });
 
   useEffect(() => {
@@ -119,13 +119,8 @@ function App() {
   return (
     <>
       <div>
-        <Header isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
-      </div>
-
-      <div className="box">
-        <div>
-          <Header />
-        </div>
+      <Header isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
+    
 
         <div>
           {(state === 2 || state === 0) && <CustomDropdown options={options} placeholder="Filter by Region" newMap={newMap} setState={setState} region={region} setRegion={setRegion} />}
