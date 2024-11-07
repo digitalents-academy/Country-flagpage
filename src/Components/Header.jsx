@@ -3,15 +3,7 @@ import "./catalogue.css"
 import { useEffect, useState } from 'react';
 
 
-const Header = () => {
-
-
-
-  const [isDarkMode, setIsDarkMode] = useState(() => {
-    const savedMode = localStorage.getItem('darkmode');
-    return savedMode === 'true';
-  });
-
+const Header = ({ isDarkMode, setIsDarkMode }) => {
 
   useEffect(() => {
     localStorage.setItem('darkMode', isDarkMode);
