@@ -125,7 +125,7 @@ function App() {
 
         <div>
           {(state === 2 || state === 0) && <CustomDropdown options={options} placeholder="Filter by Region" newMap={newMap} setState={setState} region={region} setRegion={setRegion} isDarkMode={isDarkMode} />}
-          {(state === 2 || state === 0) && <SearchBar setCountryData={setCountryData} nextState={nextState} isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />}
+          {(state === 2 || state === 0) && <SearchBar setCountryData={setCountryData} nextState={nextState} isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} setState={setState} />}
           {state === 2 && <FilteredCountries filteredCountries={filteredCountries} region={region} setRegion={setRegion} />}
         </div>
 

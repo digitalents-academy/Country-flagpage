@@ -2,7 +2,7 @@ import React from 'react'
 import { useEffect, useRef, useState } from "react"
 import "./catalogue.css"
 
-export default function SearchBar({ setCountryData, nextState, isDarkMode }) {
+export default function SearchBar({ setCountryData, nextState, isDarkMode, setState }) {
   const [selectedValue, setSelectedValue] = useState('Option 1');
   const inputRef = useRef(null);
 
@@ -12,7 +12,7 @@ export default function SearchBar({ setCountryData, nextState, isDarkMode }) {
         ? 'cn'
         : inputRef.current.value
       );
-      nextState()
+      setState(1)
     }
   }
 
