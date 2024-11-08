@@ -17,7 +17,7 @@ function App() {
   const [countryData, setCountryData] = useState('Belgium');
   const nextState = () => { state < 2 ? setState(state + 1) : null };
   const prevState = () => { state > 0 ? setState(state - 1) : null };
-  const options = ['All countries', 'Africa', 'Americas', 'Antarctic', 'Europe', 'Oceania'];
+  const options = ['Africa', 'Americas', 'Antarctic', 'Europe', 'Oceania'];
   const [region, setRegion] = useState(null);
 
   const [isDarkMode, setIsDarkMode] = useState(() => {
