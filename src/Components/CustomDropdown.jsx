@@ -1,7 +1,7 @@
-import React, { useState, useRef } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import './CustomDropdown.css';
 
-export const CustomDropdown = ({ options, placeholder, newMap, setState, region, setRegion }) => {
+export const CustomDropdown = ({ options, placeholder, newMap, setState, region, setRegion, isDarkMode }) => {
   const [isOpen, setIsOpen] = useState(false); //starts not open
   const [selectedValue, setSelectedValue] = useState(null);
 
@@ -24,7 +24,7 @@ export const CustomDropdown = ({ options, placeholder, newMap, setState, region,
     <div className="dropdown">
       <div className="dropdown-header" onClick={toggleDropdown}>
         {selectedValue ? selectedValue : placeholder || 'Filter by Region'}
-        <img className="dropdown-arrow" src="./src/down-arrow.png"></img>
+        <img className="dropdown-arrow" src={isDarkMode ? "src/white-arrow.png" : "src/down-arrow.png"} />
       </div>
       {isOpen && (
         <div className="dropdown-options">

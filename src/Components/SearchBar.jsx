@@ -1,7 +1,8 @@
-import { useRef, useState } from "react"
+import React from 'react'
+import { useEffect, useRef, useState } from "react"
 import "./catalogue.css"
 
-export default function SearchBar({ setCountryData, nextState }) {
+export default function SearchBar({ setCountryData, nextState, isDarkMode }) {
   const [selectedValue, setSelectedValue] = useState('Option 1');
   const inputRef = useRef(null);
 
@@ -29,7 +30,7 @@ export default function SearchBar({ setCountryData, nextState }) {
   return (
     <div className="search-bars">
       <div className="search-bar">
-        <img className="search-icon" src="src/search-outline.svg" />
+        <img className="search-icon" src={isDarkMode ? "src/search-white.png" : "src/search-outline.svg"} />
         <input ref={inputRef} onKeyDown={handleKeyDown} className="search-bar-text" type="text" placeholder="Search for a country..."></input>
       </div>
     </div>

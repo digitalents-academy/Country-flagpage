@@ -19,7 +19,7 @@ const Header = ({ isDarkMode, setIsDarkMode }) => {
     <div className="header">
       <p className="header-text">Where in the world?</p>
       <button onClick={toggleDarkMode} className="dark-mode-button">Dark Mode</button>
-      <img className="moon-icon" src="src/moon-outline.svg" />
+      <img className="moon-icon" src={isDarkMode ? "src/moon-white.png" : "src/moon-outline.svg"} />
     </div>
   )
 
