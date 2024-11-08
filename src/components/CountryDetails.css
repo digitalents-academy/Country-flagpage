@@ -65,6 +65,13 @@ body{
     margin-left: 5%;
 
 }
+@media (max-width: 1000px) {
+    .flag-and-detail-container {
+        grid-template-columns: none;
+      grid-template-rows: repeat(2, 1fr);
+    
+    }
+  }
 .detail-container{
     display: grid;
     grid-template-rows: 1fr 2fr 1fr;
